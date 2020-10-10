@@ -5,7 +5,7 @@ import Box from './Box';
 const Text = styled(Box)<ITextProps>``
 
 Text.defaultProps = {
-  color: 'primary',
+  color: 'lightGrey',
   as: 'p'
 }
 

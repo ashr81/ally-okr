@@ -1,8 +1,17 @@
 // @ts-nocheck
 import { IOKRDataType, IOKRGroupData } from "../types";
 
-export const groupByParentObjective = (data: IOKRDataType[]): IOKRGroupData[] => {
+/**
+ * Groups data and also returns available filters.
+ */
+export type groupByParentObjectiveReturnType = {
+  data: IOKRGroupData[];
+  filters: string[];
+}
+export const groupByParentObjective = (data: IOKRDataType[]): groupByParentObjectiveReturnType => {
+  const filters = new Set()
   const groupObj = data.reduce((acc: IOKRGroupData, cur: IOKRDataType) => {
+    filters.add(cur.category)
     if(cur.parent_objective_id) {
       if(acc[cur.parent_objective_id] && Array.isArray(acc[cur.parent_objective_id].keyResults)) {
         acc[cur.parent_objective_id].keyResults.push(cur)
@@ -20,5 +29,8 @@ export const groupByParentObjective = (data: IOKRDataType[]): IOKRGroupData[] =>
     }
     return acc;
   }, {})
-  return Object.values(groupObj).filter((obj) => obj.id) as IOKRGroupData[]
+  return {
+    data: Object.values(groupObj).filter((obj) => obj.id) as IOKRGroupData[],
+    filters: Array.from(filters)
+  }
 }

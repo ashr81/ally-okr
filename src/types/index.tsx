@@ -1,3 +1,4 @@
+import { MouseEvent } from 'react';
 import {
   ShadowProps,
   SpaceProps,
@@ -46,4 +47,7 @@ export interface IOKRGroupData extends IOKRDataType {
 
 export interface IOKRGroupTemplateProps {
   data: IOKRGroupData[];
+  filters: string[];
+  selectedFilters: string[];
+  onClickFilter: (event: MouseEvent<HTMLDivElement>) => void;
 }

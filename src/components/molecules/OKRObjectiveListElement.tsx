@@ -43,7 +43,10 @@ const OKRObjectiveListElement = ({
       onClick={onClickToggleKeyResults}
     >
       <AvatarExtended size={3} as='span' showWire={keyResultsOpen} />
-      <Box pl={2} as='p' fontSize='md' fontWeight='bold'>{`${position}. ${data.title}`}</Box>
+      <Box pl={2} as='p' fontSize='md' display='block' fontWeight='bold'>{`${position}. ${data.title}`}</Box>
+      <Box pl={2} as='p' fontSize='md' display='block' fontWeight='bold'>
+        Category: {data.category}
+      </Box>
     </Container>
   )
 }

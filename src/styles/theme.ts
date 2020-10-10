@@ -1,13 +1,15 @@
 import { DefaultTheme } from 'styled-components';
 
 const colors = {
-  hoverBg: 'white',
+  hoverBg: '#4B57D2',
+  selectedBg: '#313DC4',
   lighterGrey: '#e8e8e8',
   lightGrey: '#555',
   lightestGrey: '#f8f9fa',
   lighterGreen: '#B0DDC2',
   primary: '#0070f3',
   wireframe: '#8da1e8',
+  white: '#fff',
   text: {
     heading: '#333',
     description: '#000',
