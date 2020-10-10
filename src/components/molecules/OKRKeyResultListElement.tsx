@@ -42,7 +42,7 @@ const OKRKeyResultListElement = ({
       px={4}
     >
       <AvatarExtended size={3} ml={5} as='span' />
-      <Box pl={2} as='p' fontSize='md' fontWeight='bold'>{`${String.fromCharCode(position + 96)}. ${data.title}`}</Box>
+      <Box pl={2} as='p' fontSize='md' fontWeight='bold'>{`${String.fromCharCode(position + 96)}. ${data.title} - ${data.category}`}</Box>
     </Flex>
   )
 }

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { dropdownArrow, userProfile } from '../../assets/images';
 import { IFlexboxProps, IOKRDataType } from '../../types';
 import { Flex, Box } from '../atoms';
@@ -23,10 +23,17 @@ const AvatarExtended = styled(Flex)<ExtendAvatarType>`
 `
 
 const DropdownImage = styled(Flex)<ExtendAvatarType>`
+  position: absolute;
   background-image: url(${dropdownArrow});
+  left: 12px;
+  transition: transform 0.3s linear;
+  ${({ resultsOpen }) => !resultsOpen && css`
+    transform: rotate(-90deg);
+  `}
 `
 
 const Container = styled(Flex)`
+  position: relative;
   &:hover {
     background-color: ${({ theme: { colors }}) => colors.white};
   }
@@ -46,8 +53,9 @@ const OKRObjectiveListElement = ({
       cursor='pointer'
       onClick={onClickToggleKeyResults}
     >
+      <DropdownImage size={3} as='span' resultsOpen={keyResultsOpen}/>
       <AvatarExtended size={3} as='span' resultsOpen={keyResultsOpen} />
-      <Box pl={2} as='h6' fontSize='md' display='block' fontWeight='bold'>{`${position}. ${data.title}`}</Box>
+      <Box pl={2} as='h6' fontSize='md' display='block' fontWeight='bold'>{`${position}. ${data.title} - ${data.category}`}</Box>
     </Container>
   )
 }
