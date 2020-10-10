@@ -22,11 +22,17 @@ const AvatarExtended = styled(Flex)<ExtendAvatarType>`
   }
 `
 
+const Container = styled(Flex)`
+  &:hover {
+    background-color: ${({ theme: { colors }}) => colors.white};
+  }
+`
+
 const OKRObjectiveListElement = ({
   data, position, onClickToggleKeyResults, keyResultsOpen
 }: { data: IOKRDataType; position: number; onClickToggleKeyResults: () => void; keyResultsOpen: boolean }) => {
   return (
-    <Flex
+    <Container
       backgroundColor='lightestGrey'
       height='60px'
       minWidth='100%'
@@ -38,7 +44,7 @@ const OKRObjectiveListElement = ({
     >
       <AvatarExtended size={3} as='span' showWire={keyResultsOpen} />
       <Box pl={2} as='p' fontSize='md' fontWeight='bold'>{`${position}. ${data.title}`}</Box>
-    </Flex>
+    </Container>
   )
 }
 
