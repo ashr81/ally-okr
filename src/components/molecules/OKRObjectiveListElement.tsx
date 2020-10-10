@@ -1,18 +1,18 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import { userProfile } from '../../assets/images';
+import { dropdownArrow, userProfile } from '../../assets/images';
 import { IFlexboxProps, IOKRDataType } from '../../types';
 import { Flex, Box } from '../atoms';
 
 type ExtendAvatarType = IFlexboxProps & {
-  showWire: boolean
+  resultsOpen: boolean
 }
 const AvatarExtended = styled(Flex)<ExtendAvatarType>`
   position: relative;
   background-image: url(${userProfile});
   &:after {
-    ${({showWire}) => showWire && `content: '';`}
+    ${({resultsOpen}) => resultsOpen && `content: '';`}
     position: absolute;
     width: 1px;
     height: 18px;
@@ -20,6 +20,10 @@ const AvatarExtended = styled(Flex)<ExtendAvatarType>`
     left: 8px;
     top: calc(100% + 4px);
   }
+`
+
+const DropdownImage = styled(Flex)<ExtendAvatarType>`
+  background-image: url(${dropdownArrow});
 `
 
 const Container = styled(Flex)`
@@ -42,11 +46,8 @@ const OKRObjectiveListElement = ({
       cursor='pointer'
       onClick={onClickToggleKeyResults}
     >
-      <AvatarExtended size={3} as='span' showWire={keyResultsOpen} />
-      <Box pl={2} as='p' fontSize='md' display='block' fontWeight='bold'>{`${position}. ${data.title}`}</Box>
-      <Box pl={2} as='p' fontSize='md' display='block' fontWeight='bold'>
-        Category: {data.category}
-      </Box>
+      <AvatarExtended size={3} as='span' resultsOpen={keyResultsOpen} />
+      <Box pl={2} as='h6' fontSize='md' display='block' fontWeight='bold'>{`${position}. ${data.title}`}</Box>
     </Container>
   )
 }
